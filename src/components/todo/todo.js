@@ -1,6 +1,6 @@
 import React from 'react';
-import {Container} from './todo.styled';
 import TodoAdd from 'components/todo-add/todo-add';
+import {Container} from './todo.styled';
 
 const Todo = () => (
     <Container>
