@@ -3,13 +3,19 @@ import {grayMain} from './colors.styled';
 
 injectGlobal`
     @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
-    
-    html, 
+
+    html,
     body,
     #root {
-        height: 100%;    
+        height: 100%;
     }
-    
+
+    ul {
+        padding: 0;
+        margin: 0;
+        list-style: none;
+    }
+
     body {
         font-family: Roboto;
         box-sizing: border-box;
@@ -18,10 +24,10 @@ injectGlobal`
         font-size: 20px;
         color: ${grayMain};
     }
-    
+
     input {
         font-family: Roboto;
         box-sizing: border-box;
-        color: ${grayMain};    
+        color: ${grayMain};
     }
 `;

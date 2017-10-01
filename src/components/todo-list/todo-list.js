@@ -1,8 +1,25 @@
 import React from 'react';
-import TodoAdd from 'components/todo-add/todo-add';
+import TodoItem from 'components/todo-item/todo-item';
+import {List, Item} from './todo-list.styled';
 
 const TodoList = () => (
-    <ul>
-        <li></li>
-    </ul>
+    <List>
+        <Item>
+            <TodoItem/>
+        </Item>
+        <Item>
+            <TodoItem/>
+        </Item>
+        <Item>
+            <TodoItem/>
+        </Item>
+        <Item>
+            <TodoItem/>
+        </Item>
+        <Item>
+            <TodoItem/>
+        </Item>
+    </List>
 );
+
+export default TodoList;
