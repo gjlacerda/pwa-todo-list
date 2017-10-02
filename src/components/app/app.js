@@ -1,10 +1,14 @@
 import React from 'react';
-import {Container} from './app.styled';
-import Todo from 'components/todo/todo';
+import TodoAdd from 'containers/todo-add/todo-add';
+import TodoList from 'components/todo-list/todo-list';
+import {Container, Content} from './app.styled';
 
 const App = () => (
     <Container>
-        <Todo/>
+        <Content>
+            <TodoAdd/>
+            <TodoList/>
+        </Content>
     </Container>
 );
 
