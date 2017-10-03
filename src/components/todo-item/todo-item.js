@@ -1,9 +1,9 @@
 import React from 'react';
 import {Container} from './todo-item.styled';
 
-const TodoItem = () => (
+const TodoItem = ({todo}) => (
     <Container>
-        teste
+        {todo.text}
     </Container>
 );
 

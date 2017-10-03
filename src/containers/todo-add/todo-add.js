@@ -4,13 +4,23 @@ import {connect} from 'react-redux';
 import {addTodo} from 'actions/todo.action';
 
 const TodoAdd = ({dispatch}) => {
+    const onKeyDown = event => {
+        const value = event.target.value;
+
+        if (!value || event.keyCode !== 13) {
+            return;
+        }
+
+        dispatch(addTodo(event.target.value));
+        event.target.value = '';
+    };
+
     return (
         <Container>
             <Input type="text"
                    placeholder="Add new todo"
-                   onClick={(e) => {
-                       dispatch(addTodo(e.target.value));
-                   }}/>
+                   onKeyDown={onKeyDown}
+                   innerRef={input => input.focus()}/>
         </Container>
     );
 };
