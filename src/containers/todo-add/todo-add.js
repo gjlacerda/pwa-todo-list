@@ -1,38 +1,18 @@
 import React from 'react';
 import {Container, Input} from './todo-add.styled';
-import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {addTodo} from 'actions/todo.action';
 
-class TodoAdd extends React.Component {
-    componentDidMount() {
-        const {store} = this.context;
-
-        this.unsubscribe = store.subscribe(() => {
-            this.forceUpdate();
-        });
-    }
-
-    componentWillUnMount() {
-        this.unsubscribe();
-    }
-
-    render() {
-        const {store} = this.context;
-        const state = store.getState();
-
-        return (
-            <Container>
-                <Input type="text" placeholder="Add new todo" onClick={() => {
-                    store.dispatch(addTodo('teste'));
-                    console.log(state);
-                }}/>
-            </Container>
-        );
-    }
-}
-
-TodoAdd.contextTypes = {
-    store: PropTypes.object
+const TodoAdd = ({dispatch}) => {
+    return (
+        <Container>
+            <Input type="text"
+                   placeholder="Add new todo"
+                   onClick={(e) => {
+                       dispatch(addTodo(e.target.value));
+                   }}/>
+        </Container>
+    );
 };
 
-export default TodoAdd;
+export default connect()(TodoAdd);
