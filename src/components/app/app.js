@@ -1,6 +1,6 @@
 import React from 'react';
 import TodoAdd from 'containers/todo-add/todo-add';
-import TodoList from 'components/todo-list/todo-list';
+import TodoList from 'containers/todo-list/todo-list';
 import {Container, Content} from './app.styled';
 
 const App = () => (

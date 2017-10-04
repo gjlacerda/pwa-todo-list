@@ -9,5 +9,6 @@ export const Input = styled.input`
 
     &::placeholder {
         color: ${grayLight};
+        font-weight: 500;
     }
 `;

@@ -2,7 +2,7 @@ import {injectGlobal} from 'styled-components';
 import {grayMain} from './colors.styled';
 
 injectGlobal`
-    @import url(https://fonts.googleapis.com/css?family=Roboto:500,700);
+    @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
     html,
     body,
@@ -18,6 +18,7 @@ injectGlobal`
 
     body {
         font-family: Roboto;
+        font-weight: 400;
         box-sizing: border-box;
         font-weight: 500;
         background: linear-gradient(-20deg, #d0b782 20%, #a0cecf 80%);

@@ -1,5 +1,6 @@
-const path              = require('path');
-const webpack           = require('webpack');
+const path    = require('path');
+const webpack = require('webpack');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -10,7 +11,7 @@ module.exports = {
     ],
     output: {
         path: path.resolve('dist'),
-        filename: 'bundle.js',
+        filename: 'src/bundle.js',
         publicPath: 'http://localhost:8080'
     },
     module: {
@@ -40,6 +41,9 @@ module.exports = {
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoEmitOnErrorsPlugin(),
+        new CopyWebpackPlugin([
+            { from: './src/icons/', to: 'src/icons/' }
+        ]),
     ]
 };

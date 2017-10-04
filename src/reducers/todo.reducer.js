@@ -1,15 +1,25 @@
-import {type as addType} from 'actions/todo.action';
+import {
+    typeAdd,
+    typeToggle
+} from 'actions/todo.action';
 
 const todo = (state = [], action) => {
     switch (action.type) {
-        case addType:
+        case typeAdd:
             return [
                 ...state,
                 {
                     id: action.id,
-                    text: action.text
+                    text: action.text,
+                    active: action.active
                 }
             ];
+        case typeToggle:
+            return state.map(todo =>
+                todo.id === action.id
+                    ? Object.assign({}, todo, {active: !todo.active})
+                    : todo
+            );
         default:
             return state;
     }
