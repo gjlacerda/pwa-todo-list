@@ -10,8 +10,8 @@ export const Container = styled.div`
 
 export const Checkbox = styled.span`
     display: inline-block;
-    width: 35px;
-    height: 35px;
+    width: 25px;
+    height: 25px;
     background-color: #fff;
     border-radius: 50%;
     border: 2px solid ${checkboxBg};

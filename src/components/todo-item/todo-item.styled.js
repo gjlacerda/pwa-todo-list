@@ -4,8 +4,8 @@ export const ItemLayout = `
     display: flex;
     align-items: center;
     outline: none;
-    height: 50px;
-    padding: 0 15px;
+    min-height: 50px;
+    padding: 15px;
     border: none;
     width: 100%;
     box-sizing: border-box;
@@ -13,4 +13,17 @@ export const ItemLayout = `
 
 export const Container = styled.div`
     ${ItemLayout}
+    word-wrap: break-word;
+`;
+
+export const Text = styled.span`
+    display: inline-block;
+    margin-left: 12px;
+    width: calc(100% - 37px);
+`;
+
+export const LeftContent = styled.div`
+    display: flex;
+    align-items: center;
+    width: 100%;
 `;

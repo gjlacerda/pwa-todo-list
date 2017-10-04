@@ -4,6 +4,10 @@ import {grayMain} from './colors.styled';
 injectGlobal`
     @import url(https://fonts.googleapis.com/css?family=Roboto:400);
 
+    * {
+        box-sizing: border-box;
+    }
+
     html,
     body,
     #root {
@@ -28,7 +32,6 @@ injectGlobal`
 
     input {
         font-family: Roboto;
-        box-sizing: border-box;
         color: ${grayMain};
     }
 `;
