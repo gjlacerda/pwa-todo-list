@@ -1,6 +1,7 @@
 import styled, {css} from 'styled-components';
 
 const checkboxBg = '#ddd';
+const checkboxAtiveBg = '#c3e6cb';
 
 export const Container = styled.div`
     display: flex;
@@ -16,8 +17,9 @@ export const Checkbox = styled.span`
     border-radius: 50%;
     border: 2px solid ${checkboxBg};
     cursor: pointer;
-     
-    ${props => props.active && css`
-        background-color: ${checkboxBg};
+
+    ${props => props.done && css`
+        border-color: ${checkboxAtiveBg};
+        background-color: ${checkboxAtiveBg};
     `}
 `;

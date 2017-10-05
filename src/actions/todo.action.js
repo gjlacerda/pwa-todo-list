@@ -7,7 +7,7 @@ export const addTodo = text => ({
     type : typeAdd,
     id: id++,
     text,
-    active: false
+    done: false
 });
 
 export const toggleTodo = id => ({

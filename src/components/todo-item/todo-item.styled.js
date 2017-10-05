@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, {css} from 'styled-components';
 
 export const ItemLayout = `
     display: flex;
@@ -20,6 +20,10 @@ export const Text = styled.span`
     display: inline-block;
     margin-left: 12px;
     width: calc(100% - 37px);
+
+    ${props => props.done && css`
+        text-decoration: line-through;
+    `}
 `;
 
 export const LeftContent = styled.div`

@@ -1,10 +1,10 @@
 import React from 'react';
 import {Container, Checkbox} from './toggle.styled';
 
-const Toggle = ({active, onClick}) => (
+const Toggle = ({done, onClick}) => (
     <Container>
         <Checkbox onClick={() => onClick()}
-                  active={active}/>
+                  done={done}/>
     </Container>
 );
 

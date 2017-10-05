@@ -11,13 +11,13 @@ const todo = (state = [], action) => {
                 {
                     id: action.id,
                     text: action.text,
-                    active: action.active
+                    done: action.done
                 }
             ];
         case typeToggle:
             return state.map(todo =>
                 todo.id === action.id
-                    ? Object.assign({}, todo, {active: !todo.active})
+                    ? Object.assign({}, todo, {done: !todo.done})
                     : todo
             );
         default:

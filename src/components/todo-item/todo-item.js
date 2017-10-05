@@ -5,9 +5,9 @@ import Toggle from 'components/toggle/toggle';
 const TodoItem = ({todo, toggleActive}) => (
     <Container>
         <LeftContent>
-            <Toggle active={todo.active}
+            <Toggle done={todo.done}
                     onClick={() => toggleActive(todo.id)}/>
-            <Text>{todo.text}</Text>
+            <Text done={todo.done}>{todo.text}</Text>
         </LeftContent>
 
     </Container>
