@@ -1,7 +1,7 @@
 import React from 'react';
 import {Container, Input} from './todo-add.styled';
 import {connect} from 'react-redux';
-import {addTodo} from 'actions/todo.action';
+import {addAction} from 'actions/todo.action';
 
 const TodoAdd = ({dispatch}) => {
     const onKeyDown = event => {
@@ -11,7 +11,7 @@ const TodoAdd = ({dispatch}) => {
             return;
         }
 
-        dispatch(addTodo(event.target.value));
+        dispatch(addAction(event.target.value));
         event.target.value = '';
     };
 

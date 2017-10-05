@@ -20,9 +20,11 @@ export const Text = styled.span`
     display: inline-block;
     margin-left: 12px;
     width: calc(100% - 37px);
+    padding-right: 15px;
 
     ${props => props.done && css`
         text-decoration: line-through;
+        opacity: 0.5;
     `}
 `;
 

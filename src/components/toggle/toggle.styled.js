@@ -20,6 +20,6 @@ export const Checkbox = styled.span`
 
     ${props => props.done && css`
         border-color: ${checkboxAtiveBg};
-        background-color: ${checkboxAtiveBg};
+        background: url(src/icons/icon-check.svg) no-repeat center center ${checkboxAtiveBg};
     `}
 `;

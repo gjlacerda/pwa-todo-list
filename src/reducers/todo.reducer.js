@@ -1,6 +1,7 @@
 import {
     typeAdd,
-    typeToggle
+    typeToggle,
+    typeRemove
 } from 'actions/todo.action';
 
 const todo = (state = [], action) => {
@@ -20,6 +21,8 @@ const todo = (state = [], action) => {
                     ? Object.assign({}, todo, {done: !todo.done})
                     : todo
             );
+        case typeRemove:
+            return state.filter(todo => todo.id !== action.id);
         default:
             return state;
     }
