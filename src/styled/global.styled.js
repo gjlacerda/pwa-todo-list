@@ -2,7 +2,7 @@ import {injectGlobal} from 'styled-components';
 import {grayMain} from './colors.styled';
 
 injectGlobal`
-    @import url(https://fonts.googleapis.com/css?family=Roboto:400);
+    @import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 
     * {
         box-sizing: border-box;
@@ -21,7 +21,7 @@ injectGlobal`
     }
 
     body {
-        font-family: Roboto;
+        font-family: "Source Sans Pro";
         font-weight: 400;
         box-sizing: border-box;
         font-weight: 500;
@@ -31,7 +31,7 @@ injectGlobal`
     }
 
     input {
-        font-family: Roboto;
+        font-family: "Source Sans Pro";
         color: ${grayMain};
     }
 `;

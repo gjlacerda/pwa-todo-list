@@ -4,23 +4,31 @@ import {
     typeRemove
 } from 'actions/todo.action';
 
+const addTodo = (state = [], action) => {
+    return [
+        ...state,
+        {
+            id: action.id,
+            text: action.text,
+            done: action.done
+        }
+    ];
+};
+
+const toggleTodo = (state = [], action) => {
+    return state.map(todo =>
+        todo.id === action.id
+            ? Object.assign({}, todo, {done: !todo.done})
+            : todo
+    );
+};
+
 const todo = (state = [], action) => {
     switch (action.type) {
         case typeAdd:
-            return [
-                ...state,
-                {
-                    id: action.id,
-                    text: action.text,
-                    done: action.done
-                }
-            ];
+            return addTodo(state, action);
         case typeToggle:
-            return state.map(todo =>
-                todo.id === action.id
-                    ? Object.assign({}, todo, {done: !todo.done})
-                    : todo
-            );
+            return toggleTodo(state, action);
         case typeRemove:
             return state.filter(todo => todo.id !== action.id);
         default:
@@ -28,13 +36,4 @@ const todo = (state = [], action) => {
     }
 };
 
-const reducer = (state = {}, action)  => {
-    return {
-        todos: todo(
-            state.todos,
-            action
-        )
-    };
-};
-
-export default reducer;
+export default todo;
