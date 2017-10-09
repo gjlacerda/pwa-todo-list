@@ -6,14 +6,12 @@ import {
 } from 'constants/todo.constants';
 import database from 'database/database';
 
-export let id = 1;
-
 export const addAction = text => {
     return dispatch => {
         const todosRef = database.ref('todos');
-        const nextId   = id++;
+        const id       = todosRef.push().key;
         const todoData = {
-            id: nextId,
+            id,
             text,
             done: false
         };
@@ -29,9 +27,9 @@ export const addAction = text => {
 export const toggleAction = id => {
     return dispatch => {
         const todosRef = database
-            .ref('todos')
-            .orderByChild('id')
-            .equalTo(id);
+                            .ref('todos')
+                            .orderByChild('id')
+                            .equalTo(id);
 
         todosRef.once('child_added').then(snapshot => {
             snapshot.ref.update({
@@ -49,9 +47,9 @@ export const toggleAction = id => {
 export const removeAction = id => {
     return dispatch => {
         const todosRef = database
-            .ref('todos')
-            .orderByChild('id')
-            .equalTo(id);
+                            .ref('todos')
+                            .orderByChild('id')
+                            .equalTo(id);
 
         todosRef.once('child_added').then(snapshot => {
             snapshot.ref.remove();
@@ -67,17 +65,12 @@ export const removeAction = id => {
 export const getAction = () => {
     return dispatch => {
         const todosRef = database
-            .ref('todos')
-            .orderByChild('id');
+                            .ref('todos')
+                            .orderByChild('id');
 
         todosRef.once('value').then(snapshot => {
             const value = snapshot.val() || [];
             const todos = Object.keys(value).map(todo => value[todo]);
-
-            // TODO: refatorar
-            if (value.length) {
-                id = todos[todos.length - 1].id + 1;
-            }
 
             dispatch({
                 type: typeGet,
