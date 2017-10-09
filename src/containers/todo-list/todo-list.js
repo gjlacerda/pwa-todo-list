@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TodoItem from 'components/todo-item/todo-item';
 import {List, Item} from './todo-list.styled';
-import {toggleAction, removeAction} from 'actions/todo.action';
+import {toggleAction, removeAction, getAction} from 'actions/todo.action';
 
 const TodoList = ({todos, toggleTodo, removeTodo}) => (
     <List>
@@ -20,14 +20,18 @@ const mapStateToProps = state => ({
     todos: state.todos
 });
 
-const mapDispatchToProps = dispatch => ({
-    toggleTodo: id => {
-        dispatch(toggleAction(id));
-    },
-    removeTodo: id => {
-        dispatch(removeAction(id));
-    }
-});
+const mapDispatchToProps = dispatch => {
+    dispatch(getAction());
+
+    return {
+        toggleTodo: id => {
+            dispatch(toggleAction(id));
+        },
+        removeTodo: id => {
+            dispatch(removeAction(id));
+        }
+    };
+};
 
 export default connect(
     mapStateToProps,

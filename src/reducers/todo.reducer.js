@@ -1,8 +1,9 @@
 import {
     typeAdd,
     typeToggle,
-    typeRemove
-} from 'actions/todo.action';
+    typeRemove,
+    typeGet
+} from 'constants/todo.constants';
 
 const addTodo = (state = [], action) => {
     return [
@@ -31,6 +32,8 @@ const todo = (state = [], action) => {
             return toggleTodo(state, action);
         case typeRemove:
             return state.filter(todo => todo.id !== action.id);
+        case typeGet:
+            return [...action.todos];
         default:
             return state;
     }
