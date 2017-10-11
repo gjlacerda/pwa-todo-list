@@ -6,7 +6,7 @@ self.addEventListener('install', e => {
     e.waitUntil(
         caches.open('airhorner').then(cache => {
             return cache.addAll([
-                `/`,
+                `/pwa-todo-list`,
                 `index.html?timestamp=${timeStamp}`,
                 `src/js/bundle.js?timestamp=${timeStamp}`,
             ])
