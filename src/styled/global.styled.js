@@ -25,7 +25,7 @@ injectGlobal`
         font-weight: 400;
         box-sizing: border-box;
         font-weight: 500;
-        background: linear-gradient(-20deg, #d0b782 20%, #a0cecf 80%);
+        background: #f5f5f5;
         font-size: 20px;
         color: ${grayMain};
     }
