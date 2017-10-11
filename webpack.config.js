@@ -3,15 +3,15 @@ const webpack = require('webpack');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    devtool: 'inline-source-map',
+    //devtool: 'inline-source-map',
     entry: [
-        'webpack-dev-server/client?http://localhost:8080',
-        'webpack/hot/dev-server',
+//        'webpack-dev-server/client?http://localhost:8080',
+//        'webpack/hot/dev-server',
         './src/index.js'
     ],
     output: {
         path: path.resolve('dist'),
-        filename: 'src/bundle.js',
+        filename: 'src/js/bundle.js',
         publicPath: 'http://localhost:8080'
     },
     module: {
@@ -34,11 +34,11 @@ module.exports = {
             'node_modules'
         ]
     },
-    devServer: {
-        publicPath: '/',
-        contentBase: './dist',
-        historyApiFallback: true
-    },
+//    devServer: {
+//        publicPath: '/',
+//        contentBase: './dist',
+//        historyApiFallback: true
+//    },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
