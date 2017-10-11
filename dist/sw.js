@@ -7,8 +7,8 @@ self.addEventListener('install', e => {
         caches.open('airhorner').then(cache => {
             return cache.addAll([
                 `/`,
-                `/index.html?timestamp=${timeStamp}`,
-                `/src/js/bundle.js?timestamp=${timeStamp}`,
+                `index.html?timestamp=${timeStamp}`,
+                `src/js/bundle.js?timestamp=${timeStamp}`,
             ])
                         .then(() => self.skipWaiting());
         })
