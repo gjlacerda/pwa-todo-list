@@ -7,12 +7,12 @@ import {
 
 const addTodo = (state = [], action) => {
     return [
-        ...state,
         {
             id: action.id,
             text: action.text,
             done: action.done
-        }
+        },
+        ...state
     ];
 };
 

@@ -31,10 +31,12 @@ export const toggleAction = id => {
                             .orderByChild('id')
                             .equalTo(id);
 
-        todosRef.once('child_added').then(snapshot => {
-            snapshot.ref.update({
-                done: !snapshot.val().done
-            });
+        todosRef
+            .once('child_added')
+            .then(snapshot => {
+                snapshot.ref.update({
+                    done: !snapshot.val().done
+                });
         });
 
         dispatch({
@@ -51,8 +53,10 @@ export const removeAction = id => {
                             .orderByChild('id')
                             .equalTo(id);
 
-        todosRef.once('child_added').then(snapshot => {
-            snapshot.ref.remove();
+        todosRef
+            .once('child_added')
+            .then(snapshot => {
+                snapshot.ref.remove();
         });
 
         dispatch({
@@ -66,16 +70,22 @@ export const getAction = () => {
     return dispatch => {
         const todosRef = database
                             .ref('todos')
-                            .orderByChild('id');
+                            .orderByChild('id')
+                            .limitToLast(5);
 
-        todosRef.once('value').then(snapshot => {
-            const value = snapshot.val() || [];
-            const todos = Object.keys(value).map(todo => value[todo]);
+        todosRef
+            .once('value')
+            .then(snapshot => {
+                const value = snapshot.val() || [];
+                const todos = Object
+                                .keys(value)
+                                .map(todo => value[todo])
+                                .reverse();
 
-            dispatch({
-                type: typeGet,
-                todos
-            });
+                dispatch({
+                    type: typeGet,
+                    todos
+                });
         });
     };
 };

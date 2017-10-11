@@ -7,7 +7,7 @@ export const Container = styled.div`
 export const Content = styled.div`
     max-width: 500px;
     margin: 0 auto;
-    box-shadow: 5px 5px 10px rgba(0,0,0,0.2);
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.3);
     border-top: 1px solid #eee;
     border-left: 1px solid #eee;
 `;
