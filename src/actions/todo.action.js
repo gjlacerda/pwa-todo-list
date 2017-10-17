@@ -5,22 +5,28 @@ import {
     typeGet,
     typeGetStorage
 } from 'constants/todo.constants';
+import {
+    createTodo,
+    toggleTodo,
+    removeTodo,
+    getTodos
+} from 'utils/todo.util';
 import database from 'database/database';
-import storage from 'database/local-storage';
+import storage from 'database/storage';
+
+const todosRef = database.ref('todos');
 
 export const addAction = text => {
     return dispatch => {
-        const todosRef = database.ref('todos');
-        const id       = todosRef.push().key;
-        const todoData = {
-            id,
+        const data = {
+            id: todosRef.push().key,
             text,
             done: false
         };
 
-        todosRef.push(todoData);
+        createTodo(todosRef, data);
 
-        dispatch(Object.assign(todoData, {
+        dispatch(Object.assign(data, {
             type: typeAdd
         }));
     };
@@ -28,18 +34,7 @@ export const addAction = text => {
 
 export const toggleAction = id => {
     return dispatch => {
-        const todosRef = database
-            .ref('todos')
-            .orderByChild('id')
-            .equalTo(id);
-
-        todosRef
-            .once('child_added')
-            .then(snapshot => {
-                snapshot.ref.update({
-                    done: !snapshot.val().done
-                });
-            });
+        toggleTodo(todosRef, id);
 
         dispatch({
             type: typeToggle,
@@ -50,16 +45,7 @@ export const toggleAction = id => {
 
 export const removeAction = id => {
     return dispatch => {
-        const todosRef = database
-            .ref('todos')
-            .orderByChild('id')
-            .equalTo(id);
-
-        todosRef
-            .once('child_added')
-            .then(snapshot => {
-                snapshot.ref.remove();
-            });
+        removeTodo(todosRef, id);
 
         dispatch({
             type: typeRemove,
@@ -70,25 +56,12 @@ export const removeAction = id => {
 
 export const getAction = () => {
     return dispatch => {
-        const todosRef = database
-            .ref('todos')
-            .orderByChild('id')
-            .limitToLast(5);
-
-        todosRef
-            .once('value')
-            .then(snapshot => {
-                const value = snapshot.val() || [];
-                const todos = Object
-                    .keys(value)
-                    .map(todo => value[todo])
-                    .reverse();
-
-                dispatch({
-                    type: typeGet,
-                    todos
-                });
+        getTodos(todosRef, todos => {
+            dispatch({
+                type: typeGet,
+                todos
             });
+        });
     };
 };
 
