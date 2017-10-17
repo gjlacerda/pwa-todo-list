@@ -2,7 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 import TodoItem from 'components/todo-item/todo-item';
 import {List, Item} from './todo-list.styled';
-import {toggleAction, removeAction, getAction} from 'actions/todo.action';
+import {
+    toggleAction,
+    removeAction,
+    getFromStorageAction
+} from 'actions/todo.action';
 
 const TodoList = ({todos, toggleTodo, removeTodo}) => (
     <List>
@@ -21,7 +25,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => {
-    dispatch(getAction());
+    dispatch(getFromStorageAction());
 
     return {
         toggleTodo: id => {
