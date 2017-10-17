@@ -43,7 +43,8 @@ module.exports = {
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         new CopyWebpackPlugin([
-            { from: './src/icons/', to: 'src/icons/' }
+            { from: './src/icons/', to: 'src/icons/' },
+            { from: './src/sw.js/', to: ''},
         ]),
     ]
 };
