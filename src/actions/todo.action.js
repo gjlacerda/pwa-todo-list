@@ -1,3 +1,6 @@
+import todoUtil from 'utils/todo.util';
+import database from 'database/database';
+import storage from 'database/storage';
 import {
     typeAdd,
     typeToggle,
@@ -5,16 +8,14 @@ import {
     typeGet,
     typeGetStorage
 } from 'constants/todo.constants';
-import {
+
+const todosRef = database.ref('todos');
+const {
     createTodo,
     toggleTodo,
     removeTodo,
     getTodos
-} from 'utils/todo.util';
-import database from 'database/database';
-import storage from 'database/storage';
-
-const todosRef = database.ref('todos');
+} = todoUtil(todosRef);
 
 export const addAction = text => {
     return dispatch => {
@@ -24,7 +25,7 @@ export const addAction = text => {
             done: false
         };
 
-        createTodo(todosRef, data);
+        createTodo(data);
 
         dispatch(Object.assign(data, {
             type: typeAdd
@@ -34,7 +35,7 @@ export const addAction = text => {
 
 export const toggleAction = id => {
     return dispatch => {
-        toggleTodo(todosRef, id);
+        toggleTodo(id);
 
         dispatch({
             type: typeToggle,
@@ -45,7 +46,7 @@ export const toggleAction = id => {
 
 export const removeAction = id => {
     return dispatch => {
-        removeTodo(todosRef, id);
+        removeTodo(id);
 
         dispatch({
             type: typeRemove,
@@ -56,7 +57,7 @@ export const removeAction = id => {
 
 export const getAction = () => {
     return dispatch => {
-        getTodos(todosRef, todos => {
+        getTodos(todos => {
             dispatch({
                 type: typeGet,
                 todos

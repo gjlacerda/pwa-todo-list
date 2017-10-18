@@ -5,11 +5,15 @@ import {Provider} from 'react-redux';
 import store from 'store/store';
 import storage from 'database/storage';
 import database from 'database/database';
-import {syncFromStorage} from 'utils/todo.util';
+import todoUtil from 'utils/todo.util';
 import 'styled/global.styled';
 
+const {
+    syncFromStorage
+} = todoUtil(database.ref('todos'));
+
 store.subscribe(() => {
-    syncFromStorage(database.ref('todos'), storage);
+    syncFromStorage(storage);
 });
 
 ReactDom.render(

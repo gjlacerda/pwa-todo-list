@@ -1,50 +1,59 @@
-export const createTodo = (todosRef, {text, id}) => {
-    todosRef.push({
-        id,
-        text,
-        done: false
-    });
-};
+const todoUtil = (todosRef) => {
 
-export const toggleTodo = (todosRef, id) => {
-    todosRef
-        .orderByChild('id')
-        .equalTo(id)
-        .once('child_added')
-        .then(snapshot => {
-            snapshot.ref.update({
-                done: !snapshot.val().done
+    const getTodos = (callback) => {
+        todosRef.orderByChild('id')
+                .once('value')
+                .then(snapshot => {
+                    const value = snapshot.val() || [];
+                    const todos = Object
+                        .keys(value)
+                        .map(todo => value[todo])
+                        .reverse();
+
+                    if (callback) {
+                        callback(todos);
+                    }
+                });
+    };
+
+    return {
+        createTodo: ({text, id}) => {
+            todosRef.push({
+                id,
+                text,
+                done: false
             });
-        });
-};
+        },
 
-export const removeTodo = (todosRef, id) => {
-    todosRef.orderByChild('id')
-            .equalTo(id)
-            .once('child_added')
-            .then(snapshot => {
-                snapshot.ref.remove();
+        toggleTodo: (id) => {
+            todosRef
+                .orderByChild('id')
+                .equalTo(id)
+                .once('child_added')
+                .then(snapshot => {
+                    snapshot.ref.update({
+                        done: !snapshot.val().done
+                    });
+                });
+        },
+
+        removeTodo: (id) => {
+            todosRef.orderByChild('id')
+                    .equalTo(id)
+                    .once('child_added')
+                    .then(snapshot => {
+                        snapshot.ref.remove();
+                    });
+        },
+
+        getTodos: getTodos(),
+
+        syncFromStorage: (storage) => {
+            getTodos(todos => {
+                storage.set('todos', todos);
             });
+        }
+    };
 };
 
-export const getTodos = (todosRef, callback) => {
-    todosRef.orderByChild('id')
-            .once('value')
-            .then(snapshot => {
-                const value = snapshot.val() || [];
-                const todos = Object
-                    .keys(value)
-                    .map(todo => value[todo])
-                    .reverse();
-
-                if (callback) {
-                    callback(todos);
-                }
-            });
-};
-
-export const syncFromStorage = (todosRef, storage) => {
-    getTodos(todosRef, todos => {
-        storage.set('todos', todos);
-    });
-};
+export default todoUtil;
