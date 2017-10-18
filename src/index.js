@@ -5,11 +5,11 @@ import {Provider} from 'react-redux';
 import store from 'store/store';
 import storage from 'database/storage';
 import database from 'database/database';
-import sync from 'utils/sync.util';
+import {syncFromStorage} from 'utils/todo.util';
 import 'styled/global.styled';
 
 store.subscribe(() => {
-    sync(storage, database, 5);
+    syncFromStorage(database.ref('todos'), storage);
 });
 
 ReactDom.render(

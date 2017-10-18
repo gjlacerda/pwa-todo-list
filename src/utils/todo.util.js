@@ -29,7 +29,6 @@ export const removeTodo = (todosRef, id) => {
 
 export const getTodos = (todosRef, callback) => {
     todosRef.orderByChild('id')
-            .limitToLast(5)
             .once('value')
             .then(snapshot => {
                 const value = snapshot.val() || [];
@@ -42,4 +41,10 @@ export const getTodos = (todosRef, callback) => {
                     callback(todos);
                 }
             });
+};
+
+export const syncFromStorage = (todosRef, storage) => {
+    getTodos(todosRef, todos => {
+        storage.set('todos', todos);
+    });
 };
