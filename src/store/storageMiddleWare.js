@@ -3,14 +3,14 @@ import database from 'database/database';
 import todoUtil from 'utils/todo.util';
 import {typeGetStorage} from 'constants/todo.constants.js';
 
-const {syncFromStorage} = todoUtil(database.ref('todos'));
+const {saveToStorage} = todoUtil(database.ref('todos'));
 
 // eslint-disable-next-line no-unused-vars
-const syncMiddleWare = store => next => action => {
+const storageMiddleWare = store => next => action => {
     if (action.type !== typeGetStorage) {
-        syncFromStorage(storage);
+        saveToStorage(storage);
     }
     next(action);
 };
 
-export default syncMiddleWare;
+export default storageMiddleWare;

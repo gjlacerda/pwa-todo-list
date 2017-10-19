@@ -48,7 +48,7 @@ const todoUtil = (todosRef) => {
 
         getTodos: getTodos,
 
-        syncFromStorage: (storage) => {
+        saveToStorage: (storage) => {
             getTodos(todos => {
                 storage.set('todos', todos);
             });
