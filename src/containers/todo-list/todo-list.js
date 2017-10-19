@@ -5,6 +5,7 @@ import {List, Item} from './todo-list.styled';
 import {
     toggleAction,
     removeAction,
+    getAction,
     getFromStorageAction
 } from 'actions/todo.action';
 
@@ -26,6 +27,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => {
     dispatch(getFromStorageAction());
+    dispatch(getAction());
 
     return {
         toggleTodo: id => {

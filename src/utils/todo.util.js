@@ -46,7 +46,7 @@ const todoUtil = (todosRef) => {
                     });
         },
 
-        getTodos: getTodos(),
+        getTodos: getTodos,
 
         syncFromStorage: (storage) => {
             getTodos(todos => {
