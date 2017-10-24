@@ -8,8 +8,7 @@ self.addEventListener('install', e => {
             .then(cache => {
                 return cache.addAll([
                     `/pwa-todo-list`,
-                    `index.html`,
-                    `src/js/bundle.js`,
+                    `/pwa-todo-list/src/js/bundle.js`,
                 ])
                 .then(() => self.skipWaiting());
             })
