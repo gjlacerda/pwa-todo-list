@@ -8,7 +8,7 @@ self.addEventListener('install', e => {
             .open('todoList')
             .then(cache => {
                 return cache.addAll([
-                    `/pwa-todo-list`,
+                    `/`,
                     `index.html?timestamp=${timeStamp}`,
                     `src/js/bundle.js?timestamp=${timeStamp}`,
                 ])

@@ -28,7 +28,7 @@ module.exports = {
     plugins: [
         new CopyWebpackPlugin([
             { from: './src/icons/', to: 'src/icons/' },
-            { from: './src/sw.js/', to: 'sw.js'},
+            { from: './src/sw.prod.js/', to: 'sw.js'},
         ])
     ]
 };

@@ -2,15 +2,14 @@ const version = '0.6.4';
 
 self.addEventListener('install', e => {
     console.log('install');
-    const timeStamp = Date.now();
     e.waitUntil(
         caches
             .open('todoList')
             .then(cache => {
                 return cache.addAll([
-                    `/`,
-                    `index.html?timestamp=${timeStamp}`,
-                    `src/js/bundle.js?timestamp=${timeStamp}`,
+                    `/pwa-todo-list`,
+                    `index.html`,
+                    `src/js/bundle.js`,
                 ])
                 .then(() => self.skipWaiting());
             })
